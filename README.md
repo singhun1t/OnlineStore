@@ -2,16 +2,16 @@
 
 ## Description of the Project
 
-Briefly describe what this Java console application does. Mention its purpose and who the intended users are. Explain the main functionality and what problems it aims to solve.
+Online store program displays products to the user to be selected and added to a cart where they can checkout.
 
-![Class Diagram](path/to/your/class_diagram.png)
 
 ## User Stories
 
 List the user stories that guided the development of your application. Format these stories as: "As a [type of user], I want [some goal] so that [some reason]."
 
-- As a user, I want to be able to input my data, so that the application can process it accordingly.
-- As a user, I want to receive immediate feedback, so I can understand what to do next.
+- As a user, I want to be able to see a list of avaiable products to add to my cart
+- As a user, I want to be able to add multiple items to my cart
+- As a user, I want to be able to checkout items and be shown the total cost of all items.
 
 ## Setup
 
@@ -34,8 +34,10 @@ Follow these steps to get your application running within IntelliJ IDEA:
 
 ## Technologies Used
 
-- Java: Mention the version you are using.
-- Any additional libraries or frameworks used in the project.
+- [Java 17](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
+- [Intellijay](https://www.jetbrains.com/idea/)
+- [Git Bash ](https://git-scm.com/downloads)
+
 
 ## Demo
 
@@ -47,24 +49,20 @@ Include screenshots or GIFs that show your application in action. Use tools like
 
 Outline potential future enhancements or functionalities you might consider adding:
 
-- Additional feature to be developed.
-- Improvement of current functionalities.
+- Additional feature that updates the inventory to remove already checkedout items
+- Feature to save cart to separate file for later checkout
 
 ## Resources
 
-List resources such as tutorials, articles, or documentation that helped you during the project.
+-[w3schools](https://www.w3schools.com/java/java_intro.asp)
+-[Alex Lee Youtube](https://www.youtube.com/@alexlorenlee)
+-[GeeksforGeeks](https://www.geeksforgeeks.org/arrays-in-java/?ref=shm)
 
-- [Java Programming Tutorial](https://www.example.com)
-- [Effective Java](https://www.example.com)
 
-## Team Members
-
-- **Name 1** - Specific contributions or roles.
-- **Name 2** - Specific contributions or roles.
 
 ## Thanks
 
 Express gratitude towards those who provided help, guidance, or resources:
 
-- Thank you to [Mentor's Name] for continuous support and guidance.
+- Thank you to Raymond for continuous support and guidance.
 - A special thanks to all teammates for their dedication and teamwork.

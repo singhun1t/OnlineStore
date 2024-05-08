@@ -48,14 +48,7 @@ public class Store {
     }
 
     public static void loadInventory(String fileName, ArrayList<Product> inventory) {
-        // This method should read a CSV file with product information and
-        // populate the inventory ArrayList with Product objects. Each line
-        // of the CSV file contains product information in the following format:
-        //
-        // id,name,price
-        //
-        // where id is a unique string identifier, name is the product name,
-        // price is a double value representing the price of the product
+
         String line;
         try {
             BufferedReader reader = new BufferedReader(new FileReader(fileName));
@@ -79,12 +72,8 @@ public class Store {
     }
 
     public static void displayProducts(ArrayList<Product> inventory, ArrayList<Product> cart, Scanner scanner) {
-        // This method should display a list of products from the inventory,
-        // and prompt the user to add items to their cart. The method should
-        // prompt the user to enter the ID of the product they want to add to
-        // their cart. The method should
-        // add the selected product to the cart ArrayList.
-        System.out.println("Availabe Products: ");
+
+        System.out.println("Available Products: ");
         for(Product product: inventory){
             System.out.println(product.getId() + "  " + product.getName() + "  $" + product.getPrice() );
         }
@@ -101,47 +90,71 @@ public class Store {
     }
 
     public static void displayCart(ArrayList<Product> cart, Scanner scanner, double totalAmount) {
-        // This method should display the items in the cart ArrayList, along
-        // with the total cost of all items in the cart. The method should
-        // prompt the user to remove items from their cart by entering the ID
-        // of the product they want to remove. The method should update the cart ArrayList and totalAmount
-        // variable accordingly.
         if(cart.isEmpty()){
             System.out.println("Cart is empty.");
-        }else{
+        }
             for (Product product: cart){
                 System.out.println(product.getId() + "  " +product.getName() + "  $" + product.getPrice());
                 totalAmount += product.getPrice();
             }
             System.out.println("Total: $" + totalAmount);
-        }
-        System.out.println("Enter ID of product that you wish to remove or Type 'Finish' to finish transaction ");
-        String input = scanner.nextLine();
+        while(!cart.isEmpty()) {
+            System.out.println("Enter ID of product that you wish to remove or Type 'Finish'");
+            String input = scanner.nextLine();
 
-        if(!input.equalsIgnoreCase("Finish")){
-            Product productRemove = findProductById(input, cart);
-            if(productRemove != null){
-                cart.remove(productRemove);
-                totalAmount -= productRemove.getPrice();
-                System.out.println("Product has been removed from the cart");
-            }else{
-                System.out.println("Product not found in cart");
+
+            if (!input.equalsIgnoreCase("Finish")) {
+                Product productRemove = findProductById(input, cart);
+                if (productRemove != null ) {
+                    cart.remove(productRemove);
+                    totalAmount -= productRemove.getPrice();
+                    System.out.println("Product has been removed from the cart");
+
+                }else{
+                    System.out.println("Product you wanted to remove is not in the cart");
+                }
+            }
+            if (input.equalsIgnoreCase("Finish")) {
+                checkOut(cart, totalAmount);
             }
         }
     }
 
     public static void checkOut(ArrayList<Product> cart, double totalAmount) {
-        // This method should calculate the total cost of all items in the cart,
-        // and display a summary of the purchase to the user. The method should
-        // prompt the user to confirm the purchase, and deduct the total cost
-        // from their account if they confirm.
+
+        if(cart.isEmpty()){
+            System.out.println("Cart is empty, unable to checkout");
+            return;
+        }
+
+        System.out.println("Checkout: ");
+        for(Product product : cart){
+            System.out.println(product.getName() + "  $" + product.getPrice());
+        }
+        System.out.println("Total: $" + totalAmount);
+
+        System.out.println("Proceed with the checkout (yes/no)");
+        Scanner checkOutScanner = new Scanner(System.in);
+        String userInput = checkOutScanner.nextLine();
+        while(!userInput.equalsIgnoreCase("yes")&& !userInput.equalsIgnoreCase("no")){
+            System.out.println("Invalid input, please enter yes or no");
+            userInput = checkOutScanner.nextLine();
+        }
+        if(userInput.equalsIgnoreCase("yes")){
+            System.out.println("Thank you for shopping");
+            cart.clear();
+        }else{
+            System.out.println("Checkout has been canceled");
+        }
     }
 
     public static Product findProductById(String id, ArrayList<Product> inventory) {
-        // This method should search the inventory ArrayList for a product with
-        // the specified ID, and return the corresponding Product object. If
-        // no product with the specified ID is found, the method should return
-        // null.
+
+        for(Product product: inventory){
+            if(product.getId().equalsIgnoreCase(id)){
+                return product;
+            }
+        }
         return null;
     }
 }
