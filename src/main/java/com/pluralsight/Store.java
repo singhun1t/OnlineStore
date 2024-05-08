@@ -84,6 +84,20 @@ public class Store {
         // prompt the user to enter the ID of the product they want to add to
         // their cart. The method should
         // add the selected product to the cart ArrayList.
+        System.out.println("Availabe Products: ");
+        for(Product product: inventory){
+            System.out.println(product.getId() + "  " + product.getName() + "  $" + product.getPrice() );
+        }
+        System.out.println("Enter the ID for the product to add it to the cart");
+        String prodID = scanner.nextLine();
+
+        Product productAdd = findProductById(prodID, inventory);
+        if(productAdd !=null){
+            cart.add(productAdd);
+            System.out.println("Product added.");
+        }else{
+            System.out.println("Product could not be found");
+        }
     }
 
     public static void displayCart(ArrayList<Product> cart, Scanner scanner, double totalAmount) {
